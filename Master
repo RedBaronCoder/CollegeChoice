@@ -1,0 +1,34 @@
+package collegechoice;
+import javax.swing.*;
+import java.awt.*;
+
+ /* @author Joshua Siktar
+*/
+
+
+public class CollegeChoice extends JFrame {
+    public CollegeChoice() {
+        super("CollegeChoice");
+        setLookAndFeel();
+        setSize(400, 400); //window frame size
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true); //makes GUI visible
+    }
+    
+    private void setLookAndFeel() {
+        try {
+            UIManager.setLookAndFeel(
+                "com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel"
+            );
+        } catch (Exception exc) {
+            // ignore error
+        }
+    }
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] arguments) {
+        CollegeChoice frame = new CollegeChoice();
+    }
+    
+}
