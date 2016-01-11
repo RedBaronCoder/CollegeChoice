@@ -13,11 +13,18 @@ public class CollegeChoice extends JFrame {
         setSize(400, 400); //window frame size
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true); //makes GUI visible
+        FlowLayout flo = new FlowLayout(); //permits panels
+        JComboBox collegeListSize = new JComboBox();
+        for (int i = 1; i < 13; i++) {
+            collegeListSize.addItem(Integer.toString(i)); //makes all inputs to scroller
+        }
+        setLayout(flo);
+        add(collegeListSize);
     }
     
     private void setLookAndFeel() {
         try {
-            UIManager.setLookAndFeel(
+            UIManager.setLookAndFeel( //initialization
                 "com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel"
             );
         } catch (Exception exc) {
