@@ -7,8 +7,8 @@ import java.awt.*;
 import java.util.*;
 import java.util.Random;
 import java.util.ArrayList;
-import java.awt.event.*;
 import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
  /* @author Joshua Siktar
 */
@@ -16,38 +16,23 @@ import java.awt.event.ItemEvent;
 public class CollegeChoice extends JFrame implements ItemListener {
     String[] masterList = new String[12];
     ArrayList<String> choiceList = new ArrayList(); //initializes the list of colleges given to the user
-    Object listSize;
-    //String size = listSize.toString();
-    
+    @SuppressWarnings("OverridableMethodCallInConstructor")
     public CollegeChoice() {
         super("CollegeChoice Query");
-        ItemEvent item = null;
         setLookAndFeel();
         setSize(400, 400); //window frame size
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true); //makes GUI visible
         FlowLayout flo = new FlowLayout(); //permits panels
         JLabel collegeListInputLabel = new JLabel("Size of college list:", JLabel.CENTER);
         add(collegeListInputLabel); //allowslabel to be called
         JComboBox collegeListSize = new JComboBox();
-        collegeListSize.addItemListener(this);
         collegeListSize.addItem("Select");
         for (int i = 1; i < 13; i++) {
             collegeListSize.addItem(Integer.toString(i)); //makes all inputs to scroller
         }
-        add(collegeListSize);
         setLayout(flo);
-        collegeListInputLabel.setLabelFor(collegeListSize); //sets label for college size input  
-        setVisible(true); //makes GUI visible
-    }
-    
-    public void collegeListSizeStateChanged(ItemEvent item) { //what happens when list size is selected
-        String size = listSize.toString(); //converts selection to string
-        if (size == "Select"){
-            System.out.println("Please select a college list size.");
-        }
-        if (size == "1"){
-        //fill in 1-12 later
-        }       
+        add(collegeListSize);
     }
     
     public void listOfColleges() { //list of all colleges in the database
@@ -74,6 +59,15 @@ public class CollegeChoice extends JFrame implements ItemListener {
         }
     }
     
+    @Override
+    public void itemStateChanged(ItemEvent item) {
+        int size = item.getStateChange(); 
+        if (size == ItemEvent.SELECTED) {
+            //fill later
+        }
+    }
+    
+    @SuppressWarnings("UseSpecificCatch")
     private void setLookAndFeel() {
         try {
             UIManager.setLookAndFeel( //initialization
@@ -85,27 +79,6 @@ public class CollegeChoice extends JFrame implements ItemListener {
     
     public static void main(String[] arguments) {
         CollegeChoice frame = new CollegeChoice();
-    }
-    
-    @Override
-    public void itemStateChanged(ItemEvent e) { //overrided code
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private static class collegeListSizeStateChanged {
-
-        private static Object getItem() {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        public collegeListSizeStateChanged() {
-        }
-    }
-
-    private static class listSize {
-        Object listSize = collegeListSizeStateChanged.getItem();
-        public listSize() {
-        }
     }
     
 }
